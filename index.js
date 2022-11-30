@@ -23,13 +23,13 @@ app.post('/controllers/game', gameController.postHistory);
 app.get('/controllers/game/:userId', gameController.getHistory);
 app.post('/controllers/auth/registration', authController.signup);
 app.post('/controllers/auth/login', authController.login);
-app.post('controllers/settings', settingsController.postSettings);
-app.get('controllers/settings', settingsController.postSettings);
+app.post('/controllers/settings', settingsController.postSettings);
+app.get('/controllers/settings/:userId', settingsController.getSettings);
 
 
 mongoose
     .connect(MONGODB_URI)
-    .then(result => {
+    .then(() => {
         app.listen(3000);
     })
     .catch(err => {
