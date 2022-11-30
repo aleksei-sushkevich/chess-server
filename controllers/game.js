@@ -2,7 +2,7 @@ const History = require('../models/history');
 
 exports.getHistory = async (req, res, next) => {
     const userId = req.params.userId;
-    History.find({ userId: userId })
+    History.find({userId: userId})
         .then(history => {
             console.log(userId);
             res.status(201).json(history);
@@ -28,13 +28,13 @@ exports.postHistory = (req, res, next) => {
         history.moves.push(body.history[index]);
     }
     history.save()
-        .then(result=>{
+        .then(() => {
             res.status(200).json({
                 message: 'Success!'
             });
         })
-        .catch(err => {
-            res.status(200).json({
+        .catch(() => {
+            res.status(400).json({
                 message: 'Something wrong!'
             });
         });
