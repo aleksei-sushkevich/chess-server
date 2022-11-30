@@ -28,12 +28,12 @@ exports.login = async (req, res) => {
     try {
         const user = await User.findOne({ email: email });
         if (!user) {
-            new Error('A user with this email could not be found.');
+            throw new Error('A user with this email could not be found.');
         }
         loadedUser = user;
         const isEqual = await bcrypt.compare(password, user.password);
         if (!isEqual) {
-            new Error('Wrong password!');
+            throw new Error('Wrong password!');
         }
         const token = jwt.sign(
             {
